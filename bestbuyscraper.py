@@ -31,13 +31,9 @@ def check_availability():
     purchasebutton = soup.find(class_="add-to-cart-button").get_text()
 
     def send_slack():
-        print('sending slack...')
-        print(SLACK_WEBHOOK)
-        requests.post(SLACK_WEBHOOK, json=slack_message)
+        requests.post(f'{SLACK_WEBHOOK}', json=slack_message)
 
     def send_email():
-        print(GOOGLE_APP_PASSWORD)
-        print('sending email...')
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.ehlo()
         server.starttls()
@@ -54,13 +50,13 @@ def check_availability():
         server.quit()
 
     if(purchasebutton == "Sold Out"):
+        print('-> Still sold out!')
+    else:
         print('Its available! Sending email and slack now, then terminating script.\n')
         send_email()
         send_slack()
         global flag
         flag = False
-    else:
-        print('-> Still sold out!')
 
 
 while(flag):
