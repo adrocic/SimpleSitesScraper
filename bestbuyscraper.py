@@ -31,7 +31,7 @@ def check_availability():
     purchasebutton = soup.find(class_="add-to-cart-button").get_text()
 
     def send_slack():
-        requests.post(f'{SLACK_WEBHOOK}', json=slack_message)
+        requests.post(SLACK_WEBHOOK, json=slack_message)
 
     def send_email():
         server = smtplib.SMTP('smtp.gmail.com', 587)
