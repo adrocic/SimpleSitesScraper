@@ -1,4 +1,4 @@
-# XboxBestBuyScraper
+# SimpleSitesScraper
 
 # Installation
 
